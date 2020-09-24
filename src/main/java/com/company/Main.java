@@ -1,12 +1,13 @@
 package com.company;
-/*
-Group: 30
-Authors: Tobias Borgstroem s184810,
-Excersise: CDIO_1
-*/
+
+import desktop_resources.GUI;
+
 public class Main {
 
     public static void main(String[] args) {
 	// write your code here
+
+        System.out.println("Hello World");
+        GUI.setDice(3, 4);
     }
 }
