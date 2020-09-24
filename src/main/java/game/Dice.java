@@ -1,6 +1,6 @@
 
 
-package com.company;
+package game;
 
 
 import  java.util.Random;
