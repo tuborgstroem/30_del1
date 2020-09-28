@@ -3,8 +3,8 @@ package game;
 public class Player {
 
     /* player id
-    * player name
-    * player's score in the game */
+     * player name
+     * player's score in the game */
     private int id;
     private String name;
     private int score;
@@ -67,12 +67,17 @@ public class Player {
      * Add to score
      *
      * @param new score gain
-    */
-    public void addToScore(int scoreGain){ this.score += scoreGain; }
+     */
+    public void addToScore(int scoreGain) {
+        this.score += scoreGain;
+    }
 
     /*
      * Returns a String representing a player.
      *
      * @return string form of this player
      */
-    public String toString() {return id + "";}
+    public String toString() {
+        return id + "";
+    }
+}
