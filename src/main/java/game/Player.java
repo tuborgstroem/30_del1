@@ -2,14 +2,12 @@ package game;
 
 public class Player {
 
-    /* player id */
+    /* player id
+    * player name
+    * player's score in the game */
     private int id;
-
-    /* player name */
     private String name;
-
-    /* player's score in the game */
-    private int diceSum;
+    private int score;
 
     /*
      * Constructs a new Player with the specified id.
@@ -53,7 +51,7 @@ public class Player {
      * @return player's score in the game
      */
     public int getGameScore() {
-        return diceSum;
+        return score;
     }
 
     /*
@@ -61,16 +59,20 @@ public class Player {
      *
      * @param score value used to set the game score of player
      */
-    public void setGameScore(int score) {
-        this.diceSum = score;
+    public void setGameScore(int newScore) {
+        this.score = newScore;
     }
+
+    /*
+     * Add to score
+     *
+     * @param new score gain
+    */
+    public void addToScore(int scoreGain){ this.score += scoreGain; }
 
     /*
      * Returns a String representing a player.
      *
      * @return string form of this player
      */
-    public String toString() {
-        return id + "";
-    }
-}
+    public String toString() {return id + "";}
