@@ -6,15 +6,15 @@ import java.util.Scanner;
 
 public class Game {
     private int totalNumPlayers;
-    private int maxNumPlayers;
     private int totalNumDice;
     private ArrayList<Player> playerList;
 
     public Game(int totalNumPlayers, int totalNumDice) {
-        if (totalNumPlayers > maxNumPlayers){
-            totalNumPlayers = maxNumPlayers;
+        if (totalNumPlayers > 6){
+            totalNumPlayers = 6;
+        } else if (totalNumPlayers < 1){
+            totalNumPlayers = 1;
         }
-        DiceCup cup = new DiceCup(totalNumDice);
         addPlayers(totalNumPlayers);
         initGUI();
     }
@@ -22,18 +22,18 @@ public class Game {
     public void playGame() {
         int winnerID = -1;
         Scanner input = new Scanner(System.in);
-        String a;
+        DiceCup cup = new DiceCup(totalNumDice);
 
         while (winnerID == -1)
         {
-
             for (int i = 0; i < playerList.size(); i++) {   //A full round
-                GUI.showMessage("Player "+i+1+"'s turn, press enter to roll dice");
-                a = input.next(); //Scuffed way of awaiting user input(enter)..
+                //GUI.showMessage("Player "+i+1+"'s turn, press enter to roll dice");
+                //String fake = input.nextLine(); //Scuffed way of awaiting user input(enter)..
 
-                //roll goes here
-                //roll goes here
-                //roll goes here
+                cup.rollDice();
+                System.out.println(cup.getDiceinCup().get(1).getValue());
+                //GUI.setDice(cup.getDiceinCup().get(0).getValue(),cup.getDiceinCup().get(1).getValue());
+                //playerList.get(i).setGameScore(cup.getSum());
 
                 if (playerList.get(i).getGameScore() >= 40) {
                     winnerID = i;
@@ -44,7 +44,7 @@ public class Game {
         }
 
         input.close();
-        GUI.showMessage("Player "+winnerID+1+" has won the game, congratulations!");
+        GUI.showMessage("Player "+(winnerID+1)+" has won the game, congratulations!");
     }
 
     private void initGUI() {
