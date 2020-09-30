@@ -1,10 +1,10 @@
 package game;
 
-import java.util.ArrayList;
-
 public class RollTester {
     private int totalThrows;
     private int numDice = 2;
+    private int sum;
+    private int pairs;
     public RollTester(int numberOfThrows){
         totalThrows = numberOfThrows;
     }
@@ -14,14 +14,31 @@ public class RollTester {
     }
 
     public void runRollLoop() {
-        int a, b;
+        int diceA, diceB;
+        pairs = 0;
         DiceCup cup = new DiceCup(2);
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < totalThrows; i++) {
             cup.rollDice();
-            a = cup.getDiceinCup().get(0).getValue();
-            b = cup.getDiceinCup().get(1).getValue();
-            System.out.println(a);
-            System.out.println(b);
+            diceA = cup.getDiceinCup().get(0).getValue();
+            diceB = cup.getDiceinCup().get(1).getValue();
+            sum += diceA + diceB;
+            if (diceA == diceB) {
+                pairs++;
+            }
         }
+    }
+
+    public void showResults(){
+        System.out.println("Total number of throws with two dice: "+totalThrows);
+        System.out.println("Total sum of dice throws: "+sum);
+        System.out.println("Total number of pairs: "+pairs);
+    }
+
+    public int getSum(){
+        return sum;
+    }
+
+    public int getPairs(){
+        return pairs;
     }
 }
