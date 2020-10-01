@@ -28,7 +28,7 @@ public class Game {
         while (winnerID == -1) //Game loop till winner is found
         {
             for (int i = 0; i < playerList.size(); i++) {   //A full round
-                GUI.showMessage("Player "+(i+1)+"'s turn, press OK to roll dice");
+                GUI.showMessage(playerList.get(i).getName()+"'s turn, press OK to roll dice");
                 //Scuffed way of awaiting user input(enter)..
 
                 cup.rollDice();
@@ -45,7 +45,7 @@ public class Game {
                 }
             }
         }
-        GUI.showMessage("Player "+(winnerID+1)+" has won the game, congratulations!");
+        GUI.showMessage(playerList.get(winnerID)+" has won the game, congratulations!");
         GUI.close();
     }
 
