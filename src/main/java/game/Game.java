@@ -1,14 +1,5 @@
 package game;
 
-<<<<<<< HEAD
-import java.util.ArrayList;
-
-public class Game {
-
-    private ArrayList<Player> players;
-    private int numberOfPlayers;
-    private DiceCup gameDice;
-=======
 import desktop_resources.GUI;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -74,6 +65,5 @@ public class Game {
         input.close();
     }
 
->>>>>>> bd2205a022e296d92e62878eb5f446184003abb1
 
 }
