@@ -45,7 +45,7 @@ public class Game {
                 }
             }
         }
-        GUI.showMessage(playerList.get(winnerID)+" has won the game, congratulations!");
+        GUI.showMessage(playerList.get(winnerID).getName()+" has won the game, congratulations!");
         GUI.close();
     }
 
