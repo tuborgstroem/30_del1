@@ -25,14 +25,12 @@ public class DiceCup {
     public DiceCup(int numOfDice){
         numberOfDice = numOfDice;
         diceIncup = new ArrayList<Dice>();
-        for (int i = 0; i>numOfDice; i++){
+        for (int i = 0; i<numOfDice; i++){
             Dice d;
             d = new Dice();
             diceIncup.add(d);
         }
-
     }
-
     public void rollDice(){
         sum =0 ;
         for (int i = 0; i < diceIncup.size(); i++) {
