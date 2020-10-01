@@ -35,6 +35,10 @@ public class Game {
                 int a = cup.getDiceinCup().get(0).getValue();
                 int b = cup.getDiceinCup().get(1).getValue();
                 GUI.setDice(a,b);
+                playerList.get(i).setGameScore(20);
+//                GUI.setDice(1,1);
+//                int a=1;
+//                int b=1;
                 if (a == b) {
                     if (a == 1) {
                         playerList.get(i).setGameScore(0);
