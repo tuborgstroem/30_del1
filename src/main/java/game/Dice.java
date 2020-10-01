@@ -17,7 +17,6 @@ public class Dice {
     }
     public Dice(){
         rand = new Random();
-
         sides = 6;
     }
 
