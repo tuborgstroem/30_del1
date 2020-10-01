@@ -12,39 +12,41 @@ public class Game {
     public Game(int totalNumPlayers, int totalNumDice) {
         if (totalNumPlayers > 6){
             totalNumPlayers = 6;
-        } else if (totalNumPlayers < 1){
+        } else if (totalNumPlayers < 1) {
             totalNumPlayers = 1;
         }
         addPlayers(totalNumPlayers);
+        DiceCup cup = new DiceCup(totalNumDice);
         initGUI();
+        playGame();
     }
 
     public void playGame() {
         int winnerID = -1;
-        Scanner input = new Scanner(System.in);
-        DiceCup cup = new DiceCup(totalNumDice);
+        DiceCup cup = new DiceCup(2);
 
-        while (winnerID == -1)
+        while (winnerID == -1) //Game loop till winner is found
         {
             for (int i = 0; i < playerList.size(); i++) {   //A full round
-                //GUI.showMessage("Player "+i+1+"'s turn, press enter to roll dice");
-                //String fake = input.nextLine(); //Scuffed way of awaiting user input(enter)..
+                GUI.showMessage("Player "+i+1+"'s turn, press enter to roll dice");
+                //Scuffed way of awaiting user input(enter)..
 
                 cup.rollDice();
-                System.out.println(cup.getDiceinCup().get(1).getValue());
-                //GUI.setDice(cup.getDiceinCup().get(0).getValue(),cup.getDiceinCup().get(1).getValue());
-                //playerList.get(i).setGameScore(cup.getSum());
+                int a = cup.getDiceinCup().get(0).getValue();
+                int b = cup.getDiceinCup().get(1).getValue();
+                GUI.setDice(a,b);
+                playerList.get(i).addToScore(cup.getSum());
 
+
+                GUI.setBalance(playerList.get(i).getName(),playerList.get(i).getGameScore());
                 if (playerList.get(i).getGameScore() >= 40) {
                     winnerID = i;
                     break;
                 }
             }
-
         }
-
-        input.close();
-        GUI.showMessage("Player "+(winnerID+1)+" has won the game, congratulations!");
+        GUI.showMessage("Player "+winnerID+1+" has won the game, congratulations!");
+        GUI.close();
     }
 
     private void initGUI() {
