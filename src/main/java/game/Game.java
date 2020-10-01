@@ -35,6 +35,11 @@ public class Game {
                 int a = cup.getDiceinCup().get(0).getValue();
                 int b = cup.getDiceinCup().get(1).getValue();
                 GUI.setDice(a,b);
+                if (a == b) {
+                    if (a == 1) {
+                        playerList.get(i).setGameScore(0);
+                    }
+                }
                 playerList.get(i).addToScore(cup.getSum());
 
 
