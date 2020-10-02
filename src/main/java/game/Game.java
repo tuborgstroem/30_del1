@@ -24,24 +24,25 @@ public class Game {
     public void playGame() {
         int winnerID = -1;
         boolean extraRound = false;
+        boolean twosixes = false;
         DiceCup cup = new DiceCup(2);
 
         while (winnerID == -1) //Game loop till winner is found
         {
             for (int i = 0; i < playerList.size(); i++) {   //A full round
-                GUI.showMessage(playerList.get(i).getName()+"'s turn, press OK to roll dice");
+                GUI.showMessage(playerList.get(i).getName() + "'s turn, press OK to roll dice");
                 //Scuffed way of awaiting user input(click)..
 
                 cup.rollDice();
                 int a = cup.getDiceinCup().get(0).getValue();
                 int b = cup.getDiceinCup().get(1).getValue();
-                GUI.setDice(a,b);
+                GUI.setDice(a, b);
 
                 if (a == b) {
 
                     if (a == 1) {
                         playerList.get(i).setGameScore(0);
-                        GUI.showMessage("Oh no "+playerList.get(i).getName()+"'s points have been reset to 0 for throwing two 1's!");
+                        GUI.showMessage("Oh no " + playerList.get(i).getName() + "'s points have been reset to 0 for throwing two 1's!");
                     } else {
                         extraRound = true;
                         playerList.get(i).addToScore(cup.getSum());
@@ -50,16 +51,27 @@ public class Game {
                     playerList.get(i).addToScore(cup.getSum());
                 }
 
-                GUI.setBalance(playerList.get(i).getName(),playerList.get(i).getGameScore());
-                if (playerList.get(i).getGameScore() >= 40 && a==b) {
+                GUI.setBalance(playerList.get(i).getName(), playerList.get(i).getGameScore());
+                if (playerList.get(i).getGameScore() >= 40 && a == b) {
                     winnerID = i;
                     break;
                 }
                 if (extraRound) {
-                    GUI.showMessage(playerList.get(i).getName()+" got an extra round!");
+                    GUI.showMessage(playerList.get(i).getName() + " got an extra round!");
                     extraRound = false;
                     i--;
                 }
+
+                if (a==b && a == 6 && twosixes){
+                    winnerID = i;
+                    break;
+                }
+                if (a == b && a == 6) {
+                    twosixes = true;
+                } else {
+                    twosixes = false;
+                }
+
             }
         }
         GUI.showMessage(playerList.get(winnerID).getName()+" has won the game, congratulations!");
