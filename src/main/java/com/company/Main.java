@@ -1,18 +1,29 @@
 package com.company;
 
 import desktop_resources.GUI;
+import game.Game;
 import game.Player;
+import game.RollTester;
+
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
-
-        System.out.println("Hello World");
-        GUI.setDice(3, 4);
-        Player player = new Player(1);
-        player.setName("Thor");
-        System.out.println(player.getName());
+        Scanner inp = new Scanner(System.in);
+        String opt;
+        while (true) {
+            System.out.println("Please enter either 'Play' to play dice roll game or 'Test' to test results from 1000 rolls");
+            opt = inp.nextLine();
+            if (opt.equalsIgnoreCase("test")) {
+                RollTester tester = new RollTester();
+                tester.runRollLoop();
+                tester.showResults();
+            } else if (opt.equalsIgnoreCase("play")) {
+                Game a = new Game(2, 2);
+                break;
+            }
+        }
 
     }
 }
