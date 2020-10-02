@@ -29,23 +29,23 @@ public class Game {
         {
             for (int i = 0; i < playerList.size(); i++) {   //A full round
                 GUI.showMessage(playerList.get(i).getName()+"'s turn, press OK to roll dice");
-                //Scuffed way of awaiting user input(enter)..
+                //Scuffed way of awaiting user input(click)..
 
                 cup.rollDice();
                 int a = cup.getDiceinCup().get(0).getValue();
                 int b = cup.getDiceinCup().get(1).getValue();
                 GUI.setDice(a,b);
-                playerList.get(i).setGameScore(20);
-//                GUI.setDice(1,1);
-//                int a=1;
-//                int b=1;
+
                 if (a == b) {
                     if (a == 1) {
                         playerList.get(i).setGameScore(0);
+                        GUI.showMessage("Oh no "+playerList.get(i).getName()+"'s points have been reset to 0 for throwing two 1's!");
+                    } else {
+                        playerList.get(i).addToScore(cup.getSum());
                     }
+                } else {
+                    playerList.get(i).addToScore(cup.getSum());
                 }
-                playerList.get(i).addToScore(cup.getSum());
-
 
                 GUI.setBalance(playerList.get(i).getName(),playerList.get(i).getGameScore());
                 if (playerList.get(i).getGameScore() >= 40) {
