@@ -36,6 +36,7 @@ public class Game {
                 cup.rollDice();
                 int a = cup.getDiceinCup().get(0).getValue();
                 int b = cup.getDiceinCup().get(1).getValue();
+
                 GUI.setDice(a, b);
 
                 if (a == b) {
@@ -56,20 +57,22 @@ public class Game {
                     winnerID = i;
                     break;
                 }
+
+                if (a==b && b == 6 && twosixes){
+                    winnerID = i;
+                    break;
+                }
+
+                if (a == 6 && b == 6) {
+                    twosixes = true;
+                } else {
+                    twosixes = false;
+                }
+
                 if (extraRound) {
                     GUI.showMessage(playerList.get(i).getName() + " got an extra round!");
                     extraRound = false;
                     i--;
-                }
-
-                if (a==b && a == 6 && twosixes){
-                    winnerID = i;
-                    break;
-                }
-                if (a == b && a == 6) {
-                    twosixes = true;
-                } else {
-                    twosixes = false;
                 }
 
             }
