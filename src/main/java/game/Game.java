@@ -23,6 +23,7 @@ public class Game {
 
     public void playGame() {
         int winnerID = -1;
+        boolean extraRound = false;
         DiceCup cup = new DiceCup(2);
 
         while (winnerID == -1) //Game loop till winner is found
@@ -37,10 +38,12 @@ public class Game {
                 GUI.setDice(a,b);
 
                 if (a == b) {
+
                     if (a == 1) {
                         playerList.get(i).setGameScore(0);
                         GUI.showMessage("Oh no "+playerList.get(i).getName()+"'s points have been reset to 0 for throwing two 1's!");
                     } else {
+                        extraRound = true;
                         playerList.get(i).addToScore(cup.getSum());
                     }
                 } else {
@@ -48,9 +51,14 @@ public class Game {
                 }
 
                 GUI.setBalance(playerList.get(i).getName(),playerList.get(i).getGameScore());
-                if (playerList.get(i).getGameScore() >= 40) {
+                if (playerList.get(i).getGameScore() >= 40 && a==b) {
                     winnerID = i;
                     break;
+                }
+                if (extraRound) {
+                    GUI.showMessage(playerList.get(i).getName()+" got an extra round!");
+                    extraRound = false;
+                    i--;
                 }
             }
         }
